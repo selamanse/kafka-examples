@@ -10,10 +10,10 @@ services:
 
 before_install:
   - docker run -d --name zookeeper -p 127.0.0.1:2181:2181 confluent/zookeeper
-  - wait 4
+  - sleep 4
   - docker logs zookeeper
   - docker run -d --name kafka -p 127.0.0.1:9092:9092 --link zookeeper:zookeeper confluent/kafka
-  - wait 4
+  - sleep 4
   - docker logs kafka
   - docker ps -a
 
