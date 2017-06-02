@@ -9,6 +9,10 @@ services:
   - docker
 
 before_install:
+  - docker pull confluent/zookeeper
+  - docker pull confluent/kafka
+
+install
   - docker run -d --name zookeeper -p 127.0.0.1:2181:2181 confluent/zookeeper
   - sleep 4
   - docker logs zookeeper
@@ -16,8 +20,8 @@ before_install:
   - sleep 4
   - docker logs kafka
   - docker ps -a
-
-script:
   - cd node && npm install
   - node producer.js
+
+script:
   - node consumer.js
