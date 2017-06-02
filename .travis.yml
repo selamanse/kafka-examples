@@ -1,0 +1,19 @@
+sudo: required
+
+language: node_js
+
+node_js:
+  - '6'
+
+services:
+  - docker
+
+before_install:
+  - docker run -d --name zookeeper -p 127.0.0.1:2181:2181 confluent/zookeeper
+  - docker run -d --name kafka -p 127.0.0.1:9092:9092 --link zookeeper:zookeeper confluent/kafka
+  - docker ps -a
+
+script:
+  - cd node && npm install
+  - node producer.js
+  - node consumer.js

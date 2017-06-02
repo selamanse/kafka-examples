@@ -1,0 +1,25 @@
+{
+  "name": "kafka-examples",
+  "version": "1.0.0",
+  "description": "node kafka-examples",
+  "main": "consumer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selamanse/kafka-examples.git"
+  },
+  "keywords": [
+    "kafka"
+  ],
+  "author": "Selamanse <selamanse@scheinfrei.info>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "node-rdkafka": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/selamanse/kafka-examples/issues"
+  },
+  "homepage": "https://github.com/selamanse/kafka-examples#readme"
+}
