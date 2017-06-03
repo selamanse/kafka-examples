@@ -1,7 +1,7 @@
 var Kafka = require('node-rdkafka');
 
 var producer = new Kafka.Producer({
-    'metadata.broker.list': 'localhost',
+    'metadata.broker.list': '127.0.0.1:2181',
     //'security.protocol': 'ssl',
     //'ssl.key.location': 'service.key',
     //'ssl.certificate.location': 'service.cert',
