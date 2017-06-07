@@ -1,7 +1,6 @@
 var Kafka = require('node-rdkafka');
 
 var producer = new Kafka.Producer({
-    'debug' : 'all',
     'metadata.broker.list': 'localhost',
     //'security.protocol': 'ssl',
     //'ssl.key.location': 'service.key',
@@ -53,6 +52,7 @@ producer.on('ready', function(arg) {
     var key = "key-"+i;
     // if partition is set to -1, librdkafka will use the default partitioner
     var partition = -1;
+    console.log('producing message: ' + value.toString())
     producer.produce(topic, partition, value, key);
   }
 

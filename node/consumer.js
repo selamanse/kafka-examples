@@ -34,4 +34,10 @@ consumer.on('error', function(err) {
   console.log(err);
 });
 
+console.log("connect")
 consumer.connect();
+
+//stopping this example after 30s
+setTimeout(function() {
+  consumer.disconnect();
+}, 30000);
