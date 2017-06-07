@@ -1,12 +1,14 @@
 var Kafka = require('node-rdkafka');
 
 var producer = new Kafka.Producer({
-    'metadata.broker.list': '127.0.0.1:2181',
+    'debug' : 'all',
+    'metadata.broker.list': 'localhost',
     //'security.protocol': 'ssl',
     //'ssl.key.location': 'service.key',
     //'ssl.certificate.location': 'service.cert',
     //'ssl.ca.location': 'ca.pem',
-    'dr_cb': true  //delivery report callback
+    'dr_cb': true,  //delivery report callback
+    'event_cb': true
 });
 
 var topicName = 'testtopic';
@@ -20,6 +22,10 @@ producer.on('event.log', function(log) {
 producer.on('error', function(err) {
   console.error('Error from producer');
   console.error(err);
+});
+
+producer.on('event.error', function(err) {
+  console.log(err);
 });
 
 //counter to stop this sample after maxMessages are sent
@@ -65,5 +71,6 @@ producer.on('disconnected', function(arg) {
   console.log('producer disconnected. ' + JSON.stringify(arg));
 });
 
+console.log("connecting producer");
 //starting the producer
 producer.connect();

@@ -5,23 +5,19 @@ language: node_js
 node_js:
   - '6'
 
+cache:
+  directories:
+  - node_modules
+
 services:
   - docker
 
 before_install:
-  - docker pull confluent/zookeeper
-  - docker pull confluent/kafka
+  - docker-compose up -d
 
 install:
-  - docker run -d --name zookeeper -p 127.0.0.1:2181:2181 wurstmeister/zookeeper
-  - sleep 4
-  - docker logs zookeeper
-  - docker run -d --name kafka -p 127.0.0.1:9092:9092 --link zookeeper:zookeeper -e KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 -e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 -v /var/run/docker.sock:/var/run/docker.sock wurstmeister/kafka
-  - sleep 4
-  - docker logs kafka
-  - docker ps -a
   - cd node && npm install
-  - node producer.js
 
 script:
   - node consumer.js
+  - node producer.js
