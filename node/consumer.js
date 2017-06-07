@@ -20,10 +20,7 @@ consumer.on('ready', function() {
     // This makes subsequent consumes read from that topic.
     consumer.subscribe(['testtopic']);
 
-    // Read one message every 1000 seconds
-    setInterval(function() {
-      consumer.consume(1);
-    }, 1000);
+    consumer.consume();
   })
   .on('data', function(data) {
     console.log('Message found!  Contents below.');
