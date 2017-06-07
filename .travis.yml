@@ -19,5 +19,5 @@ install:
   - cd node && npm install
 
 script:
-  - node consumer.js
   - node producer.js
+  - node consumer.js
